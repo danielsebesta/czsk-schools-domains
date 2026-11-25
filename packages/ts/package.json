@@ -1,0 +1,52 @@
+{
+  "name": "czsk-schools-domains",
+  "version": "0.1.0",
+  "description": "Check whether an e-mail address, URL or domain belongs to a Czech or Slovak school",
+  "keywords": [
+    "czech",
+    "slovak",
+    "school",
+    "domains",
+    "university",
+    "student-discount",
+    "email-verification"
+  ],
+  "license": "MIT AND CC-BY-4.0",
+  "type": "module",
+  "main": "./dist/cjs/index.js",
+  "module": "./dist/esm/index.js",
+  "types": "./dist/esm/index.d.ts",
+  "exports": {
+    ".": {
+      "import": {
+        "types": "./dist/esm/index.d.ts",
+        "default": "./dist/esm/index.js"
+      },
+      "require": {
+        "types": "./dist/cjs/index.d.ts",
+        "default": "./dist/cjs/index.js"
+      }
+    }
+  },
+  "files": [
+    "dist",
+    "README.md",
+    "LICENSE",
+    "LICENSE-DATA.md",
+    "THIRD_PARTY_NOTICES.md"
+  ],
+  "dependencies": {},
+  "scripts": {
+    "build": "node ../../scripts/build-ts.mjs",
+    "pretest": "npm run build",
+    "test": "node --test test/*.test.ts",
+    "prepublishOnly": "npm run build && npm test"
+  },
+  "devDependencies": {
+    "@types/node": "^22.0.0",
+    "typescript": "^5.6.0"
+  },
+  "engines": {
+    "node": ">=18"
+  }
+}

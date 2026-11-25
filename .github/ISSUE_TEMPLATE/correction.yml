@@ -1,0 +1,34 @@
+name: Correction or removal
+description: Ask for a domain or a school's data to be corrected or removed
+labels: ["correction"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Please do not post personal data (names, private e-mail addresses, phone numbers).
+        Requests are answered within one month.
+  - type: input
+    id: domain
+    attributes:
+      label: Domain
+      placeholder: example-skola.cz
+    validations:
+      required: true
+  - type: dropdown
+    id: request
+    attributes:
+      label: Request
+      options:
+        - Remove the domain
+        - Correct the school's data (name, address, IČO, type)
+        - The domain no longer belongs to the school
+        - Add the domain
+    validations:
+      required: true
+  - type: textarea
+    id: details
+    attributes:
+      label: Details and evidence
+      description: What is wrong and how we can check it (e.g. a link to the school's web page or registry record).
+    validations:
+      required: true

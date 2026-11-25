@@ -1,0 +1,111 @@
+name: PR Validation & Tests
+
+on:
+  pull_request:
+    types: [opened, synchronize, reopened, labeled, unlabeled]
+  push:
+    branches:
+      - main
+
+permissions:
+  contents: read
+
+concurrency:
+  group: pr-check-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  # Validates the PR's data with the scripts from the base branch, so a PR cannot weaken its own checks
+  # by editing scripts/, the workflow or the tests.
+  data:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4.4.0
+        with:
+          fetch-depth: 0
+          persist-credentials: false
+
+      - name: Checkout trusted scripts from the base branch
+        if: github.event_name == 'pull_request'
+        uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4.4.0
+        with:
+          ref: ${{ github.event.pull_request.base.sha }}
+          path: .trusted
+          persist-credentials: false
+
+      - name: Setup Node.js
+        uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4.4.0
+        with:
+          node-version: "22"
+
+      - name: Verify generated lists are up to date (no drift)
+        run: |
+          SCRIPTS=scripts
+          if [ -d .trusted/scripts ]; then SCRIPTS=.trusted/scripts; fi
+          node "$SCRIPTS/build-lists.mjs" --root "$GITHUB_WORKSPACE"
+          git diff --exit-code -- data/ packages/ts/src/
+
+      - name: Validate domain format, schema, blocklist, public suffixes and DNS of added domains
+        env:
+          EVENT_NAME: ${{ github.event_name }}
+          BASE_SHA: ${{ github.event.pull_request.base.sha }}
+          APPROVED: ${{ contains(github.event.pull_request.labels.*.name, 'maintainer-approved') }}
+        run: |
+          if [ "$EVENT_NAME" = "pull_request" ]; then
+            FLAGS=""
+            if [ "$APPROVED" = "true" ]; then FLAGS="--maintainer-approved"; fi
+            node .trusted/scripts/validate-pr.mjs --root "$GITHUB_WORKSPACE" --base "$BASE_SHA" --skip-ts $FLAGS
+          else
+            node scripts/validate-pr.mjs --skip-dns --skip-ts
+          fi
+
+  # Builds and tests the PR's own code. It runs without secrets and with a read-only token.
+  test:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4.4.0
+        with:
+          persist-credentials: false
+
+      - name: Setup Node.js
+        uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4.4.0
+        with:
+          node-version: "22"
+
+      # Go, Python, PHP (with ext-intl) and bash run the examples against the same inputs as the package tests
+      - name: Setup Go
+        uses: actions/setup-go@d8cbb8045d7f43706b9177cceb36c1f91a6644d5 # v7.1.0
+        with:
+          go-version: stable
+          cache: false
+
+      - name: Check PHP has ext-intl (Unicode domains in the PHP example)
+        run: php -m | grep -qix intl || { sudo apt-get update && sudo apt-get install -y --no-install-recommends php-intl; }
+
+      - name: Install TypeScript package devDependencies
+        working-directory: packages/ts
+        run: npm ci --ignore-scripts
+
+      - name: Validate schema, build ESM+CJS+.d.ts and run tests (package, fuzzing, examples in every language)
+        env:
+          REQUIRE_EXAMPLE_RUNTIMES: "1"
+        run: node scripts/validate-pr.mjs --skip-dns
+
+      - name: Smoke test the example command lines and the npm tarball
+        run: |
+          python3 examples/python/check.py student@zcu.cz | grep -qx "student@zcu.cz -> zcu.cz"
+          python3 examples/python/check.py someone@seznam.cz | grep -qx "someone@seznam.cz -> not a school"
+          python3 examples/python/check.py "https://evil.example/?x=a@zcu.cz" | grep -q -- "-> not a school"
+          python3 examples/python/check.py "zcu.cz/@evil.example" | grep -q -- "-> not a school"
+          php examples/php/check.php student@zcu.cz | grep -qx "student@zcu.cz -> zcu.cz"
+          php examples/php/check.php "a@evil.example,b@zcu.cz" | grep -q -- "-> not a school"
+          bash examples/shell/check.sh student@zcu.cz | grep -qx "student@zcu.cz -> school"
+          bash examples/shell/check.sh someone@seznam.cz | grep -qx "someone@seznam.cz -> not a school"
+          if bash examples/shell/check.sh "$(printf 'a@evil.example\nzcu.cz')" | grep -q -- "-> school$"; then exit 1; fi
+          (cd examples/go && go run . student@zcu.cz | grep -qx "student@zcu.cz -> zcu.cz")
+          (cd examples/go && test -z "$(gofmt -l .)" && go vet .)
+          (cd packages/ts && npm pack --dry-run)

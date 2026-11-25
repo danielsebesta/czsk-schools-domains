@@ -1,0 +1,112 @@
+name: Monthly DNS / MX Audit
+
+on:
+  schedule:
+    - cron: "0 4 1 * *"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  issues: write
+
+jobs:
+  dns-audit:
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4.4.0
+        with:
+          persist-credentials: false
+
+      - name: Setup Node.js
+        uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4.4.0
+        with:
+          node-version: "22"
+
+      - name: Run DNS / MX audit across data/domains-all.json
+        run: |
+          node scripts/check-mx.mjs \
+            --input data/domains-all.json \
+            --out dns-audit-report.md \
+            --json-out dns-audit-report.json \
+            --concurrency 40
+
+      - name: Upload audit report artifacts
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4.6.2
+        with:
+          name: dns-audit-report
+          path: |
+            dns-audit-report.md
+            dns-audit-report.json
+
+      - name: Open or update GitHub Issue for dead domains
+        uses: actions/github-script@f28e40c7f34bde8b3046d885e986cb6290c5673b # v7.1.0
+        with:
+          script: |
+            const fs = require("fs");
+            const report = JSON.parse(fs.readFileSync("dns-audit-report.json", "utf8"));
+            const { data: labelled } = await github.rest.issues.listForRepo({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              state: "open",
+              labels: "dns-audit",
+            });
+            // only touch issues this workflow opened, never ones people filed by hand
+            const issues = labelled.filter((i) => i.user?.login === "github-actions[bot]" && !i.pull_request);
+            if (!report.dead || report.dead.length === 0) {
+              core.info("No dead domains found.");
+              for (const issue of issues) {
+                await github.rest.issues.createComment({
+                  owner: context.repo.owner,
+                  repo: context.repo.repo,
+                  issue_number: issue.number,
+                  body: `Monthly DNS audit found 0 dead domains (${report.total} checked). Closing automatically.`,
+                });
+                await github.rest.issues.update({
+                  owner: context.repo.owner,
+                  repo: context.repo.repo,
+                  issue_number: issue.number,
+                  state: "closed",
+                });
+              }
+              return;
+            }
+            const md = fs.readFileSync("dns-audit-report.md", "utf8");
+            const maxChars = 60000;
+            const body = md.length > maxChars
+              ? md.slice(0, maxChars) + "\n\n... (truncated; download full report from workflow artifacts)"
+              : md;
+            const title = `Monthly DNS Audit: ${report.dead.length} domain(s) without MX/A/AAAA`;
+            if (issues.length > 0) {
+              await github.rest.issues.update({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                issue_number: issues[0].number,
+                title,
+                body,
+              });
+            } else {
+              try {
+                await github.rest.issues.getLabel({
+                  owner: context.repo.owner,
+                  repo: context.repo.repo,
+                  name: "dns-audit",
+                });
+              } catch {
+                await github.rest.issues.createLabel({
+                  owner: context.repo.owner,
+                  repo: context.repo.repo,
+                  name: "dns-audit",
+                  color: "d93f0b",
+                  description: "Automated monthly DNS/MX domain audit",
+                });
+              }
+              await github.rest.issues.create({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                title,
+                body,
+                labels: ["dns-audit"],
+              });
+            }

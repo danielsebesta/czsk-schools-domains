@@ -1,0 +1,8 @@
+# Needs branch protection on main with "Require review from Code Owners".
+# The sensitive paths are listed separately so that more maintainers can be added to them.
+*                         @danielsebesta
+/.github/                 @danielsebesta
+/scripts/                 @danielsebesta
+/packages/ts/             @danielsebesta
+/examples/                @danielsebesta
+/data/blocklist.json      @danielsebesta

@@ -1,0 +1,32 @@
+node_modules/
+dist/
+*.tsbuildinfo
+*.tgz
+*.log
+.env
+.env.*
+.DS_Store
+Thumbs.db
+desktop.ini
+.vscode/
+.idea/
+.trusted/
+dns-audit-report.json
+dns-audit-report.md
+# copied in by the release workflow
+packages/ts/README.md
+packages/ts/LICENSE
+packages/ts/LICENSE-DATA.md
+packages/ts/THIRD_PARTY_NOTICES.md
+__pycache__/
+# private working files: they live outside the repository; ignored in case they are copied in
+work/
+backups/
+live_cache.json
+mx_scan.json
+*.env
+*.pem
+*.key
+# local builds of the examples
+examples/go/example
+*.exe
