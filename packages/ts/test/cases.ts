@@ -122,6 +122,12 @@ export const CASES: Record<string, Case[]> = {
   ],
   "typos and malformed input": [
     ["", null, null],
+    // "xn--" labels that are not valid punycode pass through unchanged (Node.js versions disagree on them);
+    // .cz and .sk have no IDN domains, so such a host only matches as a subdomain of a listed school domain
+    ["x@xn--kla-f6.cz", "xn--kla-f6.cz", null],
+    ["x@zcu.xn--cz", "zcu.xn--cz", null],
+    ["student@xn--kla-f6.zcu.cz", "xn--kla-f6.zcu.cz", "zcu.cz"],
+    ["https://xn--kla-f6.zcu.cz/", "xn--kla-f6.zcu.cz", "zcu.cz"],
     ["   ", null, null],
     ["\u00a0\u3000", null, null],
     ["@", null, null],
