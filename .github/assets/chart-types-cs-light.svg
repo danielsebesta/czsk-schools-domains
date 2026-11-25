@@ -1,0 +1,52 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="384" viewBox="0 0 800 384" role="img" aria-labelledby="t">
+  <title id="t">Slevový seznam podle typu školy: Základní školy (ZŠ) 4 140, Střední školy (SŠ, SOŠ, SOU) 999, Základní umělecké školy (ZUŠ) 593, Gymnázia 554, Speciální školy 343, Střediska volného času (DDM, SVČ, CVČ) 261, Vyšší odborné školy (VOŠ) 167, Vysoké školy 120, Fakulty 99, Jazykové školy 28, Konzervatoře 27</title>
+  <g font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', 'Noto Sans', Helvetica, Arial, sans-serif" font-size="14">
+    <rect x="292" y="12" width="12" height="12" rx="2" fill="#0969da"/>
+    <text x="310" y="23" fill="#59636e">Česko</text>
+    <rect x="372" y="12" width="12" height="12" rx="2" fill="#80ccff"/>
+    <text x="390" y="23" fill="#59636e">Slovensko</text>
+    <text x="280" y="62" text-anchor="end" fill="#1f2328">Základní školy (ZŠ)</text>
+    <rect x="292" y="48" width="357.2" height="18" rx="2" fill="#0969da"/>
+    <rect x="650.2" y="48" width="62.8" height="18" rx="2" fill="#80ccff"/>
+    <text x="722.0" y="62" fill="#59636e">4 140</text>
+    <text x="280" y="92" text-anchor="end" fill="#1f2328">Střední školy (SŠ, SOŠ, SOU)</text>
+    <rect x="292" y="78" width="73.8" height="18" rx="2" fill="#0969da"/>
+    <rect x="366.8" y="78" width="27.6" height="18" rx="2" fill="#80ccff"/>
+    <text x="403.3" y="92" fill="#59636e">999</text>
+    <text x="280" y="122" text-anchor="end" fill="#1f2328">Základní umělecké školy (ZUŠ)</text>
+    <rect x="292" y="108" width="43.6" height="18" rx="2" fill="#0969da"/>
+    <rect x="336.6" y="108" width="16.5" height="18" rx="2" fill="#80ccff"/>
+    <text x="362.2" y="122" fill="#59636e">593</text>
+    <text x="280" y="152" text-anchor="end" fill="#1f2328">Gymnázia</text>
+    <rect x="292" y="138" width="39.5" height="18" rx="2" fill="#0969da"/>
+    <rect x="332.5" y="138" width="16.7" height="18" rx="2" fill="#80ccff"/>
+    <text x="358.2" y="152" fill="#59636e">554</text>
+    <text x="280" y="182" text-anchor="end" fill="#1f2328">Speciální školy</text>
+    <rect x="292" y="168" width="27.3" height="18" rx="2" fill="#0969da"/>
+    <rect x="320.3" y="168" width="7.5" height="18" rx="2" fill="#80ccff"/>
+    <text x="336.8" y="182" fill="#59636e">343</text>
+    <text x="280" y="212" text-anchor="end" fill="#1f2328">Střediska volného času (DDM, SVČ, CVČ)</text>
+    <rect x="292" y="198" width="21.7" height="18" rx="2" fill="#0969da"/>
+    <rect x="314.7" y="198" width="4.8" height="18" rx="2" fill="#80ccff"/>
+    <text x="328.5" y="212" fill="#59636e">261</text>
+    <text x="280" y="242" text-anchor="end" fill="#1f2328">Vyšší odborné školy (VOŠ)</text>
+    <rect x="292" y="228" width="16.9" height="18" rx="2" fill="#0969da"/>
+    <text x="318.9" y="242" fill="#59636e">167</text>
+    <text x="280" y="272" text-anchor="end" fill="#1f2328">Vysoké školy</text>
+    <rect x="292" y="258" width="7.9" height="18" rx="2" fill="#0969da"/>
+    <rect x="300.9" y="258" width="4.3" height="18" rx="2" fill="#80ccff"/>
+    <text x="314.2" y="272" fill="#59636e">120</text>
+    <text x="280" y="302" text-anchor="end" fill="#1f2328">Fakulty</text>
+    <rect x="292" y="288" width="5.8" height="18" rx="2" fill="#0969da"/>
+    <rect x="298.8" y="288" width="4.3" height="18" rx="2" fill="#80ccff"/>
+    <text x="312.0" y="302" fill="#59636e">99</text>
+    <text x="280" y="332" text-anchor="end" fill="#1f2328">Jazykové školy</text>
+    <rect x="292" y="318" width="2.0" height="18" rx="2" fill="#0969da"/>
+    <rect x="294.7" y="318" width="2.0" height="18" rx="2" fill="#80ccff"/>
+    <text x="304.8" y="332" fill="#59636e">28</text>
+    <text x="280" y="362" text-anchor="end" fill="#1f2328">Konzervatoře</text>
+    <rect x="292" y="348" width="2.0" height="18" rx="2" fill="#0969da"/>
+    <rect x="294.9" y="348" width="2.0" height="18" rx="2" fill="#80ccff"/>
+    <text x="304.7" y="362" fill="#59636e">27</text>
+  </g>
+</svg>
