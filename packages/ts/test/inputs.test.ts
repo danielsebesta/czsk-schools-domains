@@ -1,6 +1,6 @@
 // Everything a user can type (or an attacker can try): the corpus in cases.ts, property-based fuzzing against
 // the WHATWG URL parser as a reference, catastrophic-backtracking (ReDoS) budgets, odd JavaScript values,
-// createChecker edge cases, the data itself and the examples printed in README.md.
+// createChecker edge cases, the data itself and the examples printed in README.md and README.cs.md.
 import { test } from "node:test";
 import assert from "node:assert/strict";
 import { readFileSync } from "node:fs";
@@ -45,6 +45,15 @@ function whatwgHost(url: string): string | null {
   }
 }
 
+// Node.js versions disagree on ASCII labels that start with "xn--" but are not valid punycode
+// ("xn--kla-f6.cz"): Node.js 22 rejects them, Node.js 24 passes them through. The package (and every
+// example) passes an ASCII host through unchanged on any runtime. Such a label cannot be a listed domain
+// (the lists hold no "xn--" domain), so it only ever matches as a subdomain of a listed school domain.
+function sameHost(ref: string | null, host: string): boolean {
+  if (ref === host) return true;
+  return ref === null && /(^|\.)xn--/.test(host) && whatwgHost(`http://${host}`) === null;
+}
+
 /** The address part the way a mail program sees it: "Name <addr>" -> addr, "mailto:addr" -> addr. */
 function unwrap(input: string): string {
   let s = input.trim().toLowerCase();
@@ -85,7 +94,7 @@ function violations(input: string): string[] {
   if (scheme) {
     if (SPECIAL_SCHEMES.has(scheme[1]!)) {
       const ref = whatwgHost(s) ?? whatwgHost(s.replace(/^([a-z][a-z0-9+.-]*:\/\/[^/?#]*?):\d*(?=[/?#]|$)/, "$1"));
-      if (ref !== h) v.push(`URL host ${h}, but the WHATWG URL parser says ${ref}`);
+      if (!sameHost(ref, h)) v.push(`URL host ${h}, but the WHATWG URL parser says ${ref}`);
     }
   } else if (s.includes("@")) {
     const parts = s.split("@");
@@ -94,11 +103,11 @@ function violations(input: string): string[] {
     // atext (RFC 5322) plus "." and non-ASCII letters; nothing a mailer could read as a route, list or comment
     if (/[\s"(),:;<>[\]\\/?#@\u0000-\u001f\u007f-\u009f]/u.test(local)) v.push(`accepted local part ${JSON.stringify(local)}`);
     const ref = whatwgHost("http://" + domain);
-    if (ref !== h) v.push(`address host ${h}, but its domain part ${JSON.stringify(domain)} is ${ref}`);
+    if (!sameHost(ref, h)) v.push(`address host ${h}, but its domain part ${JSON.stringify(domain)} is ${ref}`);
   } else {
     const authority = (s.split(/[/?#]/)[0] ?? "").replace(/:\d*$/, "");
     const ref = whatwgHost("http://" + authority);
-    if (ref !== h) v.push(`domain ${h}, but the WHATWG URL parser says ${ref}`);
+    if (!sameHost(ref, h)) v.push(`domain ${h}, but the WHATWG URL parser says ${ref}`);
   }
   return v;
 }
@@ -274,8 +283,8 @@ test("no listed domain is blocklisted, free-mail or a public e-mail provider", (
 
 // ---------- README ----------
 
-test("the examples printed in README.md are true", () => {
-  const readme = readFileSync(path.join(ROOT, "README.md"), "utf8");
+for (const file of ["README.md", "README.cs.md"]) test(`the examples printed in ${file} are true`, () => {
+  const readme = readFileSync(path.join(ROOT, file), "utf8");
   const line = /^(isSchoolDomain|matchSchoolDomain|extractDomain)\(("(?:[^"\\]|\\.)*"|'(?:[^'\\]|\\.)*')\);\s*\/\/\s*(true|false|null|"[^"]*")/gm;
   const fns = { isSchoolDomain, matchSchoolDomain, extractDomain } as Record<string, (s: string) => unknown>;
   let count = 0;
@@ -284,5 +293,5 @@ test("the examples printed in README.md are true", () => {
     assert.deepEqual(fns[fn!]!(input), JSON.parse(want!), `${fn}(${arg})`);
     count++;
   }
-  assert.ok(count >= 15, `only ${count} README examples found`);
+  assert.ok(count >= 15, `only ${count} examples found in ${file}`);
 });
