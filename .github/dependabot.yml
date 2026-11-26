@@ -1,10 +1,25 @@
 version: 2
 updates:
+  # One pull request a month for all GitHub Actions
   - package-ecosystem: github-actions
     directory: /
     schedule:
       interval: monthly
+    cooldown:
+      default-days: 7
+    groups:
+      github-actions:
+        patterns: ["*"]
+
+  # One pull request a month for minor and patch updates of the dev dependencies.
+  # Major updates (e.g. a new TypeScript) come as separate pull requests, so one breaking change does not hold back the rest.
   - package-ecosystem: npm
     directory: /packages/ts
     schedule:
       interval: monthly
+    cooldown:
+      default-days: 7
+    groups:
+      dev-dependencies:
+        dependency-type: development
+        update-types: [minor, patch]
