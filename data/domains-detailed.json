@@ -81139,25 +81139,6 @@
     ]
   },
   {
-    "domain": "skolaklatov.sk",
-    "name": "Základná škola, Klátovská 56, Nižný Klátov",
-    "address": "Klátovská 56",
-    "city": "Nižný Klátov",
-    "zip": "04412",
-    "ico": "35544228",
-    "id": "100015287",
-    "country": "SK",
-    "kind": "zs",
-    "level": "primary",
-    "confidence": 98,
-    "verified": true,
-    "in_discount": true,
-    "mx": true,
-    "sources": [
-      "sk-ris-dataset-hosted-contact"
-    ]
-  },
-  {
     "domain": "skolaklic.cz",
     "name": "Střední škola Klíč, s.r.o.",
     "address": "Pražská 3061",

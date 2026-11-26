@@ -19,7 +19,7 @@
   <b>English</b> · <a href="https://github.com/danielsebesta/czsk-schools-domains/blob/main/README.cs.md">Čeština</a>
 </p>
 
-Check whether an e-mail address, URL or domain belongs to a Czech or Slovak school, from primary schools to universities. **7,331** schools are in the discount list and **9,585** domains in total, each one checked against a register or the school's own website, and against DNS.
+Check whether an e-mail address, URL or domain belongs to a Czech or Slovak school, from primary schools to universities. **7,330** schools are in the discount list and **9,584** domains in total, each one checked against a register or the school's own website, and against DNS.
 
 The data is institution metadata from public registers: no e-mail addresses, phone numbers or contact persons. Where the official name of a private school contains the name of its living founder or director, a neutral name (type of school and town) is used instead.
 
@@ -139,9 +139,9 @@ flowchart LR
 
 | File | Contents | Domains |
 |---|---|---:|
-| [`domains.json`](https://github.com/danielsebesta/czsk-schools-domains/blob/main/data/domains.json), [`domains.txt`](https://github.com/danielsebesta/czsk-schools-domains/blob/main/data/domains.txt) | The discount list: schools from primary to university, art and language schools, leisure-time centres | 7,331 |
-| [`domains-all.json`](https://github.com/danielsebesta/czsk-schools-domains/blob/main/data/domains-all.json) | The discount list plus kindergartens, nurseries, school facilities and staff-only university units | 9,585 |
-| [`domains-detailed.json`](https://github.com/danielsebesta/czsk-schools-domains/blob/main/data/domains-detailed.json) | Every domain with its school's name, address, IČO, type and DNS facts | 9,585 |
+| [`domains.json`](https://github.com/danielsebesta/czsk-schools-domains/blob/main/data/domains.json), [`domains.txt`](https://github.com/danielsebesta/czsk-schools-domains/blob/main/data/domains.txt) | The discount list: schools from primary to university, art and language schools, leisure-time centres | 7,330 |
+| [`domains-all.json`](https://github.com/danielsebesta/czsk-schools-domains/blob/main/data/domains-all.json) | The discount list plus kindergartens, nurseries, school facilities and staff-only university units | 9,584 |
+| [`domains-detailed.json`](https://github.com/danielsebesta/czsk-schools-domains/blob/main/data/domains-detailed.json) | Every domain with its school's name, address, IČO, type and DNS facts | 9,584 |
 | [`custom-domains.json`](https://github.com/danielsebesta/czsk-schools-domains/blob/main/data/custom-domains.json) | Community additions | |
 | [`blocklist.json`](https://github.com/danielsebesta/czsk-schools-domains/blob/main/data/blocklist.json) | Domains that must never be listed: free-mail, ISPs, hosting, municipalities | 267 |
 
@@ -156,7 +156,7 @@ The four lists are also attached to every [GitHub Release](https://github.com/da
 
 | Type of school | `kind` | CZ | SK | Total |
 |---|---|---:|---:|---:|
-| Primary schools (ZŠ) | `zs` | 3,521 | 619 | 4,140 |
+| Primary schools (ZŠ) | `zs` | 3,521 | 618 | 4,139 |
 | Secondary schools (SŠ, SOŠ, SOU) | `sos` | 727 | 272 | 999 |
 | Art schools (ZUŠ) | `zus` | 430 | 163 | 593 |
 | Grammar schools (gymnázium) | `gymnazium` | 389 | 165 | 554 |
@@ -167,9 +167,9 @@ The four lists are also attached to every [GitHub Release](https://github.com/da
 | Faculties | `fakulta` | 57 | 42 | 99 |
 | Language schools | `jazykova` | 17 | 11 | 28 |
 | Conservatories | `konzervator` | 19 | 8 | 27 |
-| **Discount list** | | **5,888** | **1,443** | **7,331** |
+| **Discount list** | | **5,888** | **1,442** | **7,330** |
 
-6,893 of the 7,331 domains (94 %) receive e-mail. The others are school websites without their own mail; they stay so that URLs match.
+6,892 of the 7,330 domains (94 %) receive e-mail. The others are school websites without their own mail; they stay so that URLs match.
 
 ### Record format
 

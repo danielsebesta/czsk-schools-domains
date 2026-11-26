@@ -19,7 +19,7 @@
   <a href="https://github.com/danielsebesta/czsk-schools-domains/blob/main/README.md">English</a> · <b>Čeština</b>
 </p>
 
-Zjistěte, jestli e-mailová adresa, URL nebo doména patří české nebo slovenské škole, od základních škol po univerzity. Ve slevovém seznamu je **7 331** škol, celkem **9 585** domén a každá je ověřená proti rejstříku nebo vlastnímu webu školy a proti DNS.
+Zjistěte, jestli e-mailová adresa, URL nebo doména patří české nebo slovenské škole, od základních škol po univerzity. Ve slevovém seznamu je **7 330** škol, celkem **9 584** domén a každá je ověřená proti rejstříku nebo vlastnímu webu školy a proti DNS.
 
 Data jsou metadata institucí z veřejných rejstříků: žádné e-mailové adresy, telefonní čísla ani kontaktní osoby. Kde oficiální název soukromé školy obsahuje jméno žijícího zřizovatele nebo ředitele, je použit neutrální název (typ školy a obec).
 
@@ -139,9 +139,9 @@ flowchart LR
 
 | Soubor | Obsah | Domén |
 |---|---|---:|
-| [`domains.json`](https://github.com/danielsebesta/czsk-schools-domains/blob/main/data/domains.json), [`domains.txt`](https://github.com/danielsebesta/czsk-schools-domains/blob/main/data/domains.txt) | Slevový seznam: školy od základních po vysoké, umělecké a jazykové školy, střediska volného času | 7 331 |
-| [`domains-all.json`](https://github.com/danielsebesta/czsk-schools-domains/blob/main/data/domains-all.json) | Slevový seznam a navíc mateřské školy, jesle, školská zařízení a univerzitní pracoviště jen pro zaměstnance | 9 585 |
-| [`domains-detailed.json`](https://github.com/danielsebesta/czsk-schools-domains/blob/main/data/domains-detailed.json) | Každá doména s názvem školy, adresou, IČO, typem a údaji z DNS | 9 585 |
+| [`domains.json`](https://github.com/danielsebesta/czsk-schools-domains/blob/main/data/domains.json), [`domains.txt`](https://github.com/danielsebesta/czsk-schools-domains/blob/main/data/domains.txt) | Slevový seznam: školy od základních po vysoké, umělecké a jazykové školy, střediska volného času | 7 330 |
+| [`domains-all.json`](https://github.com/danielsebesta/czsk-schools-domains/blob/main/data/domains-all.json) | Slevový seznam a navíc mateřské školy, jesle, školská zařízení a univerzitní pracoviště jen pro zaměstnance | 9 584 |
+| [`domains-detailed.json`](https://github.com/danielsebesta/czsk-schools-domains/blob/main/data/domains-detailed.json) | Každá doména s názvem školy, adresou, IČO, typem a údaji z DNS | 9 584 |
 | [`custom-domains.json`](https://github.com/danielsebesta/czsk-schools-domains/blob/main/data/custom-domains.json) | Příspěvky komunity | |
 | [`blocklist.json`](https://github.com/danielsebesta/czsk-schools-domains/blob/main/data/blocklist.json) | Domény, které v seznamu nesmí být nikdy: freemaily, poskytovatelé připojení, hostingy, obce | 267 |
 
@@ -156,7 +156,7 @@ Všechny čtyři seznamy jsou přiložené i ke každému [GitHub Release](https
 
 | Typ školy | `kind` | CZ | SK | Celkem |
 |---|---|---:|---:|---:|
-| Základní školy (ZŠ) | `zs` | 3 521 | 619 | 4 140 |
+| Základní školy (ZŠ) | `zs` | 3 521 | 618 | 4 139 |
 | Střední školy (SŠ, SOŠ, SOU) | `sos` | 727 | 272 | 999 |
 | Základní umělecké školy (ZUŠ) | `zus` | 430 | 163 | 593 |
 | Gymnázia | `gymnazium` | 389 | 165 | 554 |
@@ -167,9 +167,9 @@ Všechny čtyři seznamy jsou přiložené i ke každému [GitHub Release](https
 | Fakulty | `fakulta` | 57 | 42 | 99 |
 | Jazykové školy | `jazykova` | 17 | 11 | 28 |
 | Konzervatoře | `konzervator` | 19 | 8 | 27 |
-| **Slevový seznam** | | **5 888** | **1 443** | **7 331** |
+| **Slevový seznam** | | **5 888** | **1 442** | **7 330** |
 
-E-maily přijímá 6 893 ze 7 331 domén (94 %). Ostatní jsou weby škol bez vlastní pošty; v seznamu zůstávají, aby se shodovaly URL.
+E-maily přijímá 6 892 ze 7 330 domén (94 %). Ostatní jsou weby škol bez vlastní pošty; v seznamu zůstávají, aby se shodovaly URL.
 
 ### Formát záznamu
 

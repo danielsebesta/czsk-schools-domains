@@ -1,18 +1,18 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="800" height="384" viewBox="0 0 800 384" role="img" aria-labelledby="t">
-  <title id="t">Slevový seznam podle typu školy: Základní školy (ZŠ) 4 140, Střední školy (SŠ, SOŠ, SOU) 999, Základní umělecké školy (ZUŠ) 593, Gymnázia 554, Speciální školy 343, Střediska volného času (DDM, SVČ, CVČ) 261, Vyšší odborné školy (VOŠ) 167, Vysoké školy 120, Fakulty 99, Jazykové školy 28, Konzervatoře 27</title>
+  <title id="t">Slevový seznam podle typu školy: Základní školy (ZŠ) 4 139, Střední školy (SŠ, SOŠ, SOU) 999, Základní umělecké školy (ZUŠ) 593, Gymnázia 554, Speciální školy 343, Střediska volného času (DDM, SVČ, CVČ) 261, Vyšší odborné školy (VOŠ) 167, Vysoké školy 120, Fakulty 99, Jazykové školy 28, Konzervatoře 27</title>
   <g font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', 'Noto Sans', Helvetica, Arial, sans-serif" font-size="14">
     <rect x="292" y="12" width="12" height="12" rx="2" fill="#0969da"/>
     <text x="310" y="23" fill="#59636e">Česko</text>
     <rect x="372" y="12" width="12" height="12" rx="2" fill="#80ccff"/>
     <text x="390" y="23" fill="#59636e">Slovensko</text>
     <text x="280" y="62" text-anchor="end" fill="#1f2328">Základní školy (ZŠ)</text>
-    <rect x="292" y="48" width="357.2" height="18" rx="2" fill="#0969da"/>
-    <rect x="650.2" y="48" width="62.8" height="18" rx="2" fill="#80ccff"/>
-    <text x="722.0" y="62" fill="#59636e">4 140</text>
+    <rect x="292" y="48" width="357.3" height="18" rx="2" fill="#0969da"/>
+    <rect x="650.3" y="48" width="62.7" height="18" rx="2" fill="#80ccff"/>
+    <text x="722.0" y="62" fill="#59636e">4 139</text>
     <text x="280" y="92" text-anchor="end" fill="#1f2328">Střední školy (SŠ, SOŠ, SOU)</text>
     <rect x="292" y="78" width="73.8" height="18" rx="2" fill="#0969da"/>
     <rect x="366.8" y="78" width="27.6" height="18" rx="2" fill="#80ccff"/>
-    <text x="403.3" y="92" fill="#59636e">999</text>
+    <text x="403.4" y="92" fill="#59636e">999</text>
     <text x="280" y="122" text-anchor="end" fill="#1f2328">Základní umělecké školy (ZUŠ)</text>
     <rect x="292" y="108" width="43.6" height="18" rx="2" fill="#0969da"/>
     <rect x="336.6" y="108" width="16.5" height="18" rx="2" fill="#80ccff"/>
