@@ -1,6 +1,6 @@
 // Everything a user can type (or an attacker can try): the corpus in cases.ts, property-based fuzzing against
 // the WHATWG URL parser as a reference, catastrophic-backtracking (ReDoS) budgets, odd JavaScript values,
-// createChecker edge cases, the data itself and the examples printed in README.md and README.cs.md.
+// createChecker edge cases, the data itself and the examples printed in README.md, README.cs.md and AGENTS.md.
 import { test } from "node:test";
 import assert from "node:assert/strict";
 import { readFileSync } from "node:fs";
@@ -281,9 +281,12 @@ test("no listed domain is blocklisted, free-mail or a public e-mail provider", (
   }
 });
 
-// ---------- README ----------
+// ---------- README and AGENTS.md ----------
 
-for (const file of ["README.md", "README.cs.md"]) test(`the examples printed in ${file} are true`, () => {
+// The minimum number of example lines per file, so that a lost code block does not go unnoticed
+const DOC_EXAMPLES: Record<string, number> = { "README.md": 3, "README.cs.md": 3, "AGENTS.md": 15 };
+
+for (const [file, min] of Object.entries(DOC_EXAMPLES)) test(`the examples printed in ${file} are true`, () => {
   const readme = readFileSync(path.join(ROOT, file), "utf8");
   const line = /^(isSchoolDomain|matchSchoolDomain|extractDomain)\(("(?:[^"\\]|\\.)*"|'(?:[^'\\]|\\.)*')\);\s*\/\/\s*(true|false|null|"[^"]*")/gm;
   const fns = { isSchoolDomain, matchSchoolDomain, extractDomain } as Record<string, (s: string) => unknown>;
@@ -293,5 +296,5 @@ for (const file of ["README.md", "README.cs.md"]) test(`the examples printed in 
     assert.deepEqual(fns[fn!]!(input), JSON.parse(want!), `${fn}(${arg})`);
     count++;
   }
-  assert.ok(count >= 15, `only ${count} examples found in ${file}`);
+  assert.ok(count >= min, `only ${count} examples found in ${file}`);
 });

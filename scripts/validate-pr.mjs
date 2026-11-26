@@ -284,7 +284,7 @@ async function main() {
     for (const entry of customRaw) {
       const d = domainOf(entry);
       if (typeof d === "string" && !baseDetailed.has(d) && (typeof entry !== "object" || !entry.kind || !entry.name)) {
-        fail(`data/custom-domains.json: new domain ${d} must be an object with at least "domain", "name" and "kind" (see CONTRIBUTING.md)`);
+        fail(`data/custom-domains.json: new domain ${d} must be an object with at least "domain", "name" and "kind" (see AGENTS.md)`);
       }
     }
 

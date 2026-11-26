@@ -3,7 +3,8 @@ import path from "node:path";
 import { fileURLToPath } from "node:url";
 
 // Draws the "discount list by type of school" bar chart shown in README.md and README.cs.md,
-// in a light and a dark variant. Run it after the data changes: node scripts/render-chart.mjs
+// in a light and a dark variant, and prints the numbers the READMEs quote.
+// Run it after the data changes: node scripts/render-chart.mjs
 
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
 const OUT = path.join(ROOT, ".github", "assets");
@@ -80,3 +81,12 @@ for (const lang of Object.keys(LABELS)) {
     console.log(path.relative(ROOT, file));
   }
 }
+
+// The numbers quoted under "In numbers" and "How reliable it is", and in the chart's alt text
+const discount = records.filter((r) => r.in_discount);
+const share = (pred) => `${Math.round((100 * discount.filter(pred).length) / discount.length)} %`;
+console.log(`
+README numbers:
+  discount list ${discount.length} (CZ ${discount.filter((r) => r.country === "CZ").length}, SK ${discount.filter((r) => r.country === "SK").length}), all domains ${records.length}
+  linked to a school-register record ${share((r) => r.id)}, receive e-mail ${share((r) => r.mx)}
+  by type: ${rows.map((r) => `${r.kind} ${r.total}`).join(", ")}`);
