@@ -135,6 +135,29 @@ flowchart LR
 - Most primary-school pupils are below the GDPR age of digital consent (15 in the Czech Republic, 16 in Slovakia). If you rely on consent, ask for the parents' consent, or use `level` in `domains-detailed.json` to leave primary schools out.
 - Domains change owners. The list is re-checked, but a domain that expired yesterday can still be in it: keep the one-time-code step.
 
+## When a school is missing
+
+Anyone can suggest a missing school through the [Add a school](https://github.com/danielsebesta/czsk-schools-domains/issues/new?template=add-school.yml) form, without editing any files. A maintainer checks the domain against the school's web page or a register before it is added.
+
+A service with a student discount can link to the form when an address does not match. The `domain` parameter fills in the domain:
+
+```ts
+import { isSchoolDomain, extractDomain } from "czsk-schools-domains";
+
+const domain = extractDomain(email);
+if (domain && !isSchoolDomain(email)) {
+  const url = new URL("https://github.com/danielsebesta/czsk-schools-domains/issues/new");
+  url.searchParams.set("template", "add-school.yml");
+  url.searchParams.set("title", `Add school: ${domain}`);
+  url.searchParams.set("domain", domain);
+  // show "Is your school missing? Suggest it" with a link to url.href
+}
+```
+
+- The form needs a GitHub account.
+- An accepted domain is in the lists on `main` right after review, and in the npm package from the next release.
+- Free-mail addresses (`gmail.com`, `seznam.cz`, …) are never added, so leave the link out for them.
+
 ## What's in the data
 
 | File | Contents | Domains |
@@ -261,7 +284,7 @@ What the PR check verifies in detail is listed in [CONTRIBUTING.md](https://gith
 
 ## Contributing
 
-Missing school, dead domain or wrong data? See [CONTRIBUTING.md](https://github.com/danielsebesta/czsk-schools-domains/blob/main/CONTRIBUTING.md). Removing blocklist entries, changing the `kind` of a record, moving a record into the discount list or adding more than 200 domains needs a maintainer's review.
+Missing school? Use the [Add a school](https://github.com/danielsebesta/czsk-schools-domains/issues/new?template=add-school.yml) form. Dead domain or wrong data? See [CONTRIBUTING.md](https://github.com/danielsebesta/czsk-schools-domains/blob/main/CONTRIBUTING.md). Removing blocklist entries, changing the `kind` of a record, moving a record into the discount list or adding more than 200 domains needs a maintainer's review.
 
 ## Corrections and privacy
 

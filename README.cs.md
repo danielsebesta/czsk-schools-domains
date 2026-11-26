@@ -135,6 +135,29 @@ flowchart LR
 - Většina žáků základních škol je pod věkovou hranicí pro digitální souhlas podle GDPR (15 let v Česku, 16 na Slovensku). Pokud se spoléháte na souhlas, žádejte souhlas rodičů, nebo pomocí `level` v `domains-detailed.json` základní školy vynechte.
 - Domény mění majitele. Seznam se znovu kontroluje, ale doména, která včera vypršela, v něm ještě může být: krok s jednorázovým kódem si nechte.
 
+## Když škola chybí
+
+Chybějící školu může kdokoli navrhnout přes formulář [Add a school](https://github.com/danielsebesta/czsk-schools-domains/issues/new?template=add-school.yml), bez úprav souborů. Správce doménu před přidáním ověří podle webu školy nebo rejstříku.
+
+Služba se studentskou slevou může na formulář odkázat, když adresa neprojde. Parametr `domain` doménu do formuláře rovnou vyplní:
+
+```ts
+import { isSchoolDomain, extractDomain } from "czsk-schools-domains";
+
+const domain = extractDomain(email);
+if (domain && !isSchoolDomain(email)) {
+  const url = new URL("https://github.com/danielsebesta/czsk-schools-domains/issues/new");
+  url.searchParams.set("template", "add-school.yml");
+  url.searchParams.set("title", `Add school: ${domain}`);
+  url.searchParams.set("domain", domain);
+  // zobrazte „Chybí vaše škola? Navrhněte ji“ s odkazem na url.href
+}
+```
+
+- Formulář vyžaduje účet na GitHubu.
+- Schválená doména je v seznamech na `main` hned po kontrole a v npm balíčku od dalšího vydání.
+- Freemailové adresy (`gmail.com`, `seznam.cz`, …) se nepřidávají nikdy, takže u nich odkaz nezobrazujte.
+
 ## Co je v datech
 
 | Soubor | Obsah | Domén |
@@ -261,7 +284,7 @@ Co přesně kontrola PR ověřuje, popisuje [CONTRIBUTING.md](https://github.com
 
 ## Jak přispět
 
-Chybí škola, doména nefunguje nebo nesedí údaje? Návod je v [CONTRIBUTING.md](https://github.com/danielsebesta/czsk-schools-domains/blob/main/CONTRIBUTING.md) (anglicky). Odebrání položky z blocklistu, změnu `kind` u záznamu, přesun záznamu do slevového seznamu nebo přidání víc než 200 domén musí zkontrolovat správce.
+Chybí škola? Vyplňte formulář [Add a school](https://github.com/danielsebesta/czsk-schools-domains/issues/new?template=add-school.yml). Doména nefunguje nebo nesedí údaje? Návod je v [CONTRIBUTING.md](https://github.com/danielsebesta/czsk-schools-domains/blob/main/CONTRIBUTING.md) (anglicky). Odebrání položky z blocklistu, změnu `kind` u záznamu, přesun záznamu do slevového seznamu nebo přidání víc než 200 domén musí zkontrolovat správce.
 
 ## Opravy a ochrana osobních údajů
 

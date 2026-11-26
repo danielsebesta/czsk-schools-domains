@@ -22,7 +22,6 @@ body:
         - Remove the domain
         - Correct the school's data (name, address, IČO, type)
         - The domain no longer belongs to the school
-        - Add the domain
     validations:
       required: true
   - type: textarea

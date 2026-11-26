@@ -1,0 +1,76 @@
+name: Add a school
+description: Your school's domain is not on the list · Doména vaší školy v seznamu chybí
+title: "Add school: "
+labels: ["new-school"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        A maintainer checks every request against the school's web page or a register before the domain is added.
+        Issues are public: do not post your own e-mail address or other personal data, the domain is enough.
+
+        Správce každou žádost ověří podle webu školy nebo rejstříku a teprve potom doménu přidá.
+        Issues jsou veřejné: nepište sem svůj e-mail ani jiné osobní údaje, stačí doména.
+  - type: input
+    id: domain
+    attributes:
+      label: Domain · Doména
+      description: The part after @ in the school e-mail address, e.g. `zs-example.cz` · Část e-mailové adresy za @
+      placeholder: zs-example.cz
+    validations:
+      required: true
+  - type: input
+    id: name
+    attributes:
+      label: School name · Název školy
+      placeholder: Základní škola Example
+    validations:
+      required: true
+  - type: dropdown
+    id: country
+    attributes:
+      label: Country · Země
+      options:
+        - Czech Republic · Česko
+        - Slovakia · Slovensko
+    validations:
+      required: true
+  - type: dropdown
+    id: kind
+    attributes:
+      label: Type of school · Typ školy
+      description: Kindergartens, nurseries and courses are not added to the discount list · Mateřské školy, jesle a kurzy se do slevového seznamu nepřidávají
+      options:
+        - Primary school · Základní škola
+        - Grammar school · Gymnázium
+        - Secondary school · Střední škola (SŠ, SOŠ, SOU)
+        - Conservatory · Konzervatoř
+        - Higher vocational school · Vyšší odborná škola
+        - University or faculty · Vysoká škola nebo fakulta
+        - Art school · Základní umělecká škola
+        - Leisure-time centre · DDM, SVČ, CVČ
+        - Special school · Speciální škola
+        - Language school · Jazyková škola
+        - Other · Jiná
+    validations:
+      required: true
+  - type: input
+    id: evidence
+    attributes:
+      label: Link that shows the domain · Odkaz, kde je doména vidět
+      description: The school's contact page, web page or register record that shows the domain · Kontakty nebo web školy, případně záznam v rejstříku
+      placeholder: https://www.zs-example.cz/kontakty
+    validations:
+      required: true
+  - type: textarea
+    id: notes
+    attributes:
+      label: Anything else · Poznámka
+      description: Optional, e.g. students use a subdomain such as `student.zs-example.cz` · Nepovinné, např. že studenti mají subdoménu
+  - type: checkboxes
+    id: confirm
+    attributes:
+      label: Check · Kontrola
+      options:
+        - label: The domain belongs to the school, not to an e-mail or web provider such as gmail.com, seznam.cz, edupage.org or webnode.cz · Doména patří škole, ne poskytovateli e-mailu nebo webu
+          required: true

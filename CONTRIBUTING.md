@@ -4,6 +4,7 @@ Most changes are a single entry in one of two files. You never edit the generate
 
 | I want to… | Do this |
 |---|---|
+| suggest a missing school without editing files | fill in the [Add a school](https://github.com/danielsebesta/czsk-schools-domains/issues/new?template=add-school.yml) form |
 | add a missing school | add it to [`data/custom-domains.json`](#add-a-missing-school) |
 | remove a dead or wrong domain | add it to [`data/blocklist.json`](#remove-a-domain) |
 | correct or remove my school's data | open a [Correction or removal](https://github.com/danielsebesta/czsk-schools-domains/issues/new?template=correction.yml) issue |
@@ -96,7 +97,7 @@ The rules live in five places that must stay in step: `packages/ts/src/index.ts`
 ## Maintainers
 
 - `.github/CODEOWNERS` names the maintainers. `main` is protected by a ruleset: changes go through a pull request with a code owner's review and passing `data` and `test` checks.
-- Labels: `maintainer-approved` (the PR check needs it for sensitive changes) and `correction` (used by the issue form).
+- Labels: `maintainer-approved` (the PR check needs it for sensitive changes), `new-school` and `correction` (set by the issue forms).
 - Releases: push a `vX.Y.Z` tag on a commit on `main`. The `npm` environment needs a reviewer's approval before publishing, and `v*` tags are protected. After the first publish, switch to npm Trusted Publishing (see the comment at the top of [`release.yml`](.github/workflows/release.yml)).
 - After a larger data change, update the counts in `README.md` and `README.cs.md` and redraw the chart with `node scripts/render-chart.mjs`.
 - Refresh the Public Suffix List now and then:
