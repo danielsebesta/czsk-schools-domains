@@ -1,6 +1,6 @@
 {
   "name": "czsk-schools-domains",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Check whether an e-mail address, URL or domain belongs to a Czech or Slovak school",
   "keywords": [
     "czech",
