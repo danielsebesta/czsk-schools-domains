@@ -71,7 +71,7 @@ jobs:
 
       - name: Validate data, build ESM+CJS+.d.ts and run tests
         run: |
-          cp LICENSE LICENSE-DATA.md README.md THIRD_PARTY_NOTICES.md packages/ts/
+          cp LICENSE LICENSE-DATA.txt README.md THIRD_PARTY_NOTICES.md packages/ts/
           node scripts/validate-pr.mjs --skip-dns
 
       - name: Pack

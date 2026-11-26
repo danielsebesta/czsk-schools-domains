@@ -16,7 +16,7 @@ dns-audit-report.md
 # copied in by the release workflow
 packages/ts/README.md
 packages/ts/LICENSE
-packages/ts/LICENSE-DATA.md
+packages/ts/LICENSE-DATA.txt
 packages/ts/THIRD_PARTY_NOTICES.md
 __pycache__/
 # private working files: they live outside the repository; ignored in case they are copied in

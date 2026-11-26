@@ -1,8 +1,12 @@
 # Third-party notices
 
-The domain lists in `data/` and in the npm package `czsk-schools-domains` contain facts taken from the sources below.
-The data as a whole is released under CC BY 4.0 (see [LICENSE-DATA.md](LICENSE-DATA.md)); these notices must be kept
-when you redistribute it.
+The data files in `data/` (`domains.json`, `domains.txt`, `domains-all.json`, `domains-detailed.json`, `custom-domains.json`,
+`blocklist.json`) and the domain list embedded in the npm package `czsk-schools-domains` are licensed under the
+Creative Commons Attribution 4.0 International licence (CC BY 4.0), whose full text is in [LICENSE-DATA.txt](LICENSE-DATA.txt).
+Attribution: "czsk-schools-domains contributors", together with the source attributions below. The code (scripts, examples
+and the TypeScript package) is licensed under the MIT licence in [LICENSE](LICENSE).
+
+The data contains facts taken from the sources below. These notices must be kept when you redistribute it.
 
 ## Attributions
 

@@ -12,7 +12,7 @@
   <img src="https://img.shields.io/badge/dependencies-0-2ea44f" alt="bez závislostí">
   <img src="https://img.shields.io/node/v/czsk-schools-domains" alt="Node.js 18 a novější">
   <a href="https://github.com/danielsebesta/czsk-schools-domains/blob/main/LICENSE"><img src="https://img.shields.io/badge/code-MIT-blue" alt="licence kódu: MIT"></a>
-  <a href="https://github.com/danielsebesta/czsk-schools-domains/blob/main/LICENSE-DATA.md"><img src="https://img.shields.io/badge/data-CC%20BY%204.0-blue" alt="licence dat: CC BY 4.0"></a>
+  <a href="https://github.com/danielsebesta/czsk-schools-domains/blob/main/LICENSE-DATA.txt"><img src="https://img.shields.io/badge/data-CC%20BY%204.0-blue" alt="licence dat: CC BY 4.0"></a>
 </p>
 
 <p align="center">
@@ -284,5 +284,5 @@ Chybí škola, doména nefunguje nebo nesedí údaje? Návod je v [CONTRIBUTING.
 
 RPO od června 2026 spravuje Ministerstvo vnitra Slovenské republiky, předtím Štatistický úrad SR. Jazykové modely pomáhaly určit typ školy z úvodních stránek webů; sporné případy se rozhodly podle rejstříků nebo ručně.
 
-- **Data** (`data/` a seznam v balíčku na npm): [CC BY 4.0](https://github.com/danielsebesta/czsk-schools-domains/blob/main/LICENSE-DATA.md). Uvedení zdrojů a licenční texty třetích stran jsou v [THIRD_PARTY_NOTICES.md](https://github.com/danielsebesta/czsk-schools-domains/blob/main/THIRD_PARTY_NOTICES.md).
+- **Data** (`data/` a seznam v balíčku na npm): [CC BY 4.0](https://github.com/danielsebesta/czsk-schools-domains/blob/main/LICENSE-DATA.txt). Uvedení zdrojů a licenční texty třetích stran jsou v [THIRD_PARTY_NOTICES.md](https://github.com/danielsebesta/czsk-schools-domains/blob/main/THIRD_PARTY_NOTICES.md).
 - **Kód** (skripty, ukázky, `packages/ts`): [MIT](https://github.com/danielsebesta/czsk-schools-domains/blob/main/LICENSE).

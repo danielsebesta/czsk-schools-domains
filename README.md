@@ -12,7 +12,7 @@
   <img src="https://img.shields.io/badge/dependencies-0-2ea44f" alt="zero dependencies">
   <img src="https://img.shields.io/node/v/czsk-schools-domains" alt="Node.js 18 or newer">
   <a href="https://github.com/danielsebesta/czsk-schools-domains/blob/main/LICENSE"><img src="https://img.shields.io/badge/code-MIT-blue" alt="code licence: MIT"></a>
-  <a href="https://github.com/danielsebesta/czsk-schools-domains/blob/main/LICENSE-DATA.md"><img src="https://img.shields.io/badge/data-CC%20BY%204.0-blue" alt="data licence: CC BY 4.0"></a>
+  <a href="https://github.com/danielsebesta/czsk-schools-domains/blob/main/LICENSE-DATA.txt"><img src="https://img.shields.io/badge/data-CC%20BY%204.0-blue" alt="data licence: CC BY 4.0"></a>
 </p>
 
 <p align="center">
@@ -284,5 +284,5 @@ Missing school, dead domain or wrong data? See [CONTRIBUTING.md](https://github.
 
 RPO has been run by the Ministry of the Interior of the Slovak Republic since June 2026, previously by the Statistical Office. Language models helped classify the type of school from home pages; disputed cases were settled against the registers or by hand.
 
-- **Data** (`data/` and the list inside the npm package): [CC BY 4.0](https://github.com/danielsebesta/czsk-schools-domains/blob/main/LICENSE-DATA.md). Source attributions and third-party licence texts are in [THIRD_PARTY_NOTICES.md](https://github.com/danielsebesta/czsk-schools-domains/blob/main/THIRD_PARTY_NOTICES.md).
+- **Data** (`data/` and the list inside the npm package): [CC BY 4.0](https://github.com/danielsebesta/czsk-schools-domains/blob/main/LICENSE-DATA.txt). Source attributions and third-party licence texts are in [THIRD_PARTY_NOTICES.md](https://github.com/danielsebesta/czsk-schools-domains/blob/main/THIRD_PARTY_NOTICES.md).
 - **Code** (scripts, examples, `packages/ts`): [MIT](https://github.com/danielsebesta/czsk-schools-domains/blob/main/LICENSE).
